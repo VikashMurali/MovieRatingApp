@@ -49,14 +49,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(@NonNull AdapterViewHolder holder, int position) {
 
         ModelClass modelClass = dataHolder.get(position);
-
-        /*holder.cardViewBinding.name.setText(dataHolder.get(position).name);
-        holder.cardViewBinding.season.setText(String.valueOf(dataHolder.get(position).season));
-        holder.cardViewBinding.runtime.setText(String.valueOf(dataHolder.get(position).runtime)+" minutes");
-        holder.cardViewBinding.number.setText(String.valueOf(dataHolder.get(position).number));
-        Picasso.get().load(dataHolder.get(position).image.medium).into(holder.cardViewBinding.imageView);*/
-
-
         float itemRatingValue = getItemRatingValueFromSharedPreference(position);
 
 

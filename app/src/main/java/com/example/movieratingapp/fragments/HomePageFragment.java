@@ -9,10 +9,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
-import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.Display;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,13 +26,7 @@ import com.example.movieratingapp.databinding.FragmentHomePageBinding;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import retrofit2.Call;
@@ -47,8 +39,6 @@ public class HomePageFragment extends Fragment implements LifecycleObserver {
     List<ModelClass> moviesList;
     FragmentHomePageBinding fragmentHomePageBinding;
     private ProgressDialog progressDialog;
-    String jsonData;
-
 
 
  @Override
