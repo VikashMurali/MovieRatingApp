@@ -1,6 +1,9 @@
 package com.example.movieratingapp.view;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -19,11 +22,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
+        if(isNetworkConnected()==true) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.frameLayout, new HomePageFragment())
+                    .commit();
+        }
+        else{
+            Toast.makeText(this, "Please connect to a network", Toast.LENGTH_SHORT).show();
+        }
+    }
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.frameLayout,new HomePageFragment())
-                .commit();
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        return cm.getActiveNetworkInfo() != null && cm.getActiveNetworkInfo().isConnected();
     }
 
 }

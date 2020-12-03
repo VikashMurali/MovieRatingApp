@@ -43,14 +43,5 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.picasso:picasso:2.71828'
-    def lifecycle_version = "2.2.0"
-    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
-    implementation group: 'androidx.lifecycle', name:'lifecycle-extensions', version: '2.2.0'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.0'
-    implementation "androidx.core:core-ktx:+"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0"
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
-
 
 }

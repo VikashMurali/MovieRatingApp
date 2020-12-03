@@ -8,7 +8,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.GET;
 public interface ApiService {
-    String BASE_URL = "https://api.tvmaze.com/shows/11/";
+    String BASE_URL = "http://api.tvmaze.com/shows/11/";
 
     @GET("episodes")
     Call<List<ModelClass>> getMoviesList();

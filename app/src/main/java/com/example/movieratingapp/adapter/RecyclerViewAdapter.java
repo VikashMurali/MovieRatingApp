@@ -41,22 +41,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @NonNull
     @Override
     public AdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        CardViewBinding cardViewBinding = DataBindingUtil.inflate(layoutInflater, R.layout.card_view,parent,false);
+        CardViewBinding cardViewBinding = DataBindingUtil.inflate(LayoutInflater.from(parent.getContext()), R.layout.card_view, parent, false);
         return new AdapterViewHolder(cardViewBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull AdapterViewHolder holder, int position) {
 
-        holder.cardViewBinding.name.setText(dataHolder.get(position).name);
+        ModelClass modelClass = dataHolder.get(position);
+
+        /*holder.cardViewBinding.name.setText(dataHolder.get(position).name);
         holder.cardViewBinding.season.setText(String.valueOf(dataHolder.get(position).season));
         holder.cardViewBinding.runtime.setText(String.valueOf(dataHolder.get(position).runtime)+" minutes");
         holder.cardViewBinding.number.setText(String.valueOf(dataHolder.get(position).number));
-        Picasso.get().load(dataHolder.get(position).image.medium).into(holder.cardViewBinding.imageView);
+        Picasso.get().load(dataHolder.get(position).image.medium).into(holder.cardViewBinding.imageView);*/
 
-        SharedPreferences preference = context.getSharedPreferences("mySharedPreference", MODE_PRIVATE);
-        float itemRatingValue = preference.getFloat("rating_value"+position,0);
+
+        float itemRatingValue = getItemRatingValueFromSharedPreference(position);
+
 
         if(itemRatingValue > 0) {
             holder.cardViewBinding.ratingBar.setRating(itemRatingValue);
@@ -89,25 +91,29 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
                 AppCompatActivity activity = (AppCompatActivity) view.getContext();
 
-                bundle.putString("Name", dataHolder.get(position).getName());
-                bundle.putInt("Season", dataHolder.get(position).getSeason());
-                bundle.putInt("Number", dataHolder.get(position).getNumber());
-                bundle.putInt("RunTime", dataHolder.get(position).getRuntime());
-                bundle.putString("Summary", dataHolder.get(position).getSummary());
-                bundle.putString("ImageUrl", dataHolder.get(position).getImage().getOriginal());
+                bundle.putString("Name", modelClass.getName());
+                bundle.putString("Season", modelClass.getSeason());
+                bundle.putString("Number", modelClass.getNumber());
+                bundle.putString("RunTime", modelClass.getRuntime());
+                bundle.putString("Summary", modelClass.getSummary());
+                bundle.putString("ImageUrl", modelClass.getImage().getOriginal());
 
                 DescriptionFragment descriptionFragment = new DescriptionFragment();
 
                 descriptionFragment.setArguments(bundle);
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, descriptionFragment).addToBackStack(null).commit();
             }
-
-
         }));
+        holder.cardViewBinding.setItem(modelClass);
+    }
+
+    private float getItemRatingValueFromSharedPreference(int position) {
+        SharedPreferences preference = context.getSharedPreferences("mySharedPreference", MODE_PRIVATE);
+        return preference.getFloat("rating_value"+position,0);
     }
 
 
-public int getValueFromSharedPreference(int position_value){
+    public int getValueFromSharedPreference(int position_value){
     SharedPreferences prefs = context.getSharedPreferences("mySharedPreference", MODE_PRIVATE);
     return prefs.getInt(String.valueOf(position_value),0);
 }

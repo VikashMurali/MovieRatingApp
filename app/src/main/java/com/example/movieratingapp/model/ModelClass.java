@@ -1,8 +1,13 @@
 package com.example.movieratingapp.model;
 
 
+import android.widget.ImageView;
+
+import androidx.databinding.BindingAdapter;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.squareup.picasso.Picasso;
 
 public class ModelClass {
     @SerializedName("id")
@@ -45,6 +50,11 @@ public class ModelClass {
     @Expose
     public Links links;
 
+    @BindingAdapter({"app:imageUrl"})
+    public static void loadImage(ImageView view, String imageUrl){
+        Picasso.get().load(imageUrl).into(view);
+    }
+
     public Integer getId() {
         return id;
     }
@@ -69,16 +79,16 @@ public class ModelClass {
         this.name = name;
     }
 
-    public Integer getSeason() {
-        return season;
+    public String getSeason() {
+        return ""+season;
     }
 
     public void setSeason(Integer season) {
         this.season = season;
     }
 
-    public Integer getNumber() {
-        return number;
+    public String  getNumber() {
+        return ""+number;
     }
 
     public void setNumber(Integer number) {
@@ -117,8 +127,8 @@ public class ModelClass {
         this.airstamp = airstamp;
     }
 
-    public Integer getRuntime() {
-        return runtime;
+    public String getRuntime() {
+        return ""+runtime;
     }
 
     public void setRuntime(Integer runtime) {

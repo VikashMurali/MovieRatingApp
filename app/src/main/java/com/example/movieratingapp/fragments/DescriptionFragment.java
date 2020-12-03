@@ -28,9 +28,9 @@ public class DescriptionFragment extends Fragment {
         Bundle bundle = this.getArguments();
 
         String name = bundle.getString("Name");
-        int season = bundle.getInt("Season");
-        int number = bundle.getInt("Number");
-        int runTime = bundle.getInt("RunTime");
+        String season = bundle.getString("Season");
+        String number = bundle.getString("Number");
+        String runTime = bundle.getString("RunTime");
         String summary = bundle.getString("Summary");
         String image = bundle.getString("ImageUrl");
 

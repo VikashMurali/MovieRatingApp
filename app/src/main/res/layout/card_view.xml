@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="item"
+            type="com.example.movieratingapp.model.ModelClass" />
+    </data>
 
 <androidx.cardview.widget.CardView
     android:layout_width="match_parent"
@@ -20,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="2dp"
-
+            bind:imageUrl="@{item.image.medium}"
             android:adjustViewBounds="true"
             android:padding="10dp" />
 
@@ -41,7 +47,7 @@
 
                 <TextView
                     android:id="@+id/name"
-
+                    android:text="@{item.name}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/cardview_dark_background" />
@@ -59,7 +65,7 @@
 
                 <TextView
                     android:id="@+id/season"
-
+                    android:text="@{item.season}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/cardview_dark_background" />
@@ -77,6 +83,7 @@
 
                 <TextView
                     android:id="@+id/number"
+                    android:text="@{item.number}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 
@@ -95,6 +102,7 @@
 
                 <TextView
                     android:id="@+id/runtime"
+                    android:text="@{item.runtime}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
 

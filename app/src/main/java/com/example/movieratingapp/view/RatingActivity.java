@@ -24,7 +24,7 @@ public class RatingActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        //super.onBackPressed();
+        //super.onBackPressed();g
         float ratingValue = activityRatingBinding.ratingBar2.getRating();
         SharedPreferences.Editor editor = getSharedPreferences("mySharedPreference", MODE_PRIVATE).edit();
 
