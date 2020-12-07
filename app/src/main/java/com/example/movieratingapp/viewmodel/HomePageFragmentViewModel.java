@@ -76,8 +76,7 @@ public class HomePageFragmentViewModel {
             recyclerViewAdapter = new RecyclerViewAdapter(context, getSharedPrefs(prefs));
         }
 
-        return recyclerViewAdapter;
-
+            return recyclerViewAdapter;
     }
     private void storeSharedPrefs(List<ModelClass> moviesList){
         Gson gson = new Gson();
