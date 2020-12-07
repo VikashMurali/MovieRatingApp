@@ -2,6 +2,8 @@ package com.example.movieratingapp.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import com.example.movieratingapp.R;
@@ -23,17 +25,22 @@ public class RatingActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onStop() {
+
+        super.onStop();
+        finish();
+    }
+
+    @Override
     public void onBackPressed() {
-        //super.onBackPressed();g
         float ratingValue = activityRatingBinding.ratingBar2.getRating();
         SharedPreferences.Editor editor = getSharedPreferences("mySharedPreference", MODE_PRIVATE).edit();
 
         editor.putFloat("rating_value"+position,ratingValue);
         editor.apply();
 
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.frameLayout,new HomePageFragment())
-                .commit();
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+
     }
 }
