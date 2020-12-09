@@ -50,19 +50,18 @@ public class HomePageFragmentViewModel {
                     .subscribeOn(Schedulers.newThread())
                     .observeOn(AndroidSchedulers.mainThread());
 
-
             call.subscribe(new Observer<List<ModelClass>>() {
                 @Override
                 public void onSubscribe(Disposable d) {}
 
                 @Override
                 public void onNext(List<ModelClass> movies) {
-                    //Log.d("ONLINE DATA",""+movies);
                     moviesList = movies;
                     progressDialog.hide();
                     recyclerViewAdapter = new RecyclerViewAdapter(context, moviesList);
                     storeSharedPrefs(moviesList);
                 }
+
 
                 @Override
                 public void onError(Throwable e) { Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show(); }
@@ -75,8 +74,7 @@ public class HomePageFragmentViewModel {
             progressDialog.hide();
             recyclerViewAdapter = new RecyclerViewAdapter(context, getSharedPrefs(prefs));
         }
-
-            return recyclerViewAdapter;
+        return recyclerViewAdapter;
     }
     private void storeSharedPrefs(List<ModelClass> moviesList){
         Gson gson = new Gson();
